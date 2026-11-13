@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node -e \"['.next/server/app/portfolio.segments/portfolio','.next/server/app/contact.segments/contact','.next/server/app/_not-found.segments/_not-found','.next/server/app/blog.segments/blog','.next/server/app/blog/[slug].segments/blog/[slug]'].forEach(d=>require('fs').mkdirSync(d,{recursive:true}))\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
