@@ -184,57 +184,132 @@ export default function RootLayout({
   visibility: visible !important;
 }
 
-/* 3D Flip Cards */
+/* 3D Flip Cards (Webflow Mirror - Jitter-Free) */
 .c-flip-card {
   perspective: 1000px;
+  -webkit-perspective: 1000px;
   cursor: pointer;
+  position: relative;
+  width: 100%;
+  height: 277px !important;
 }
 
 ._w-flip-card {
-  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-  transform-style: preserve-3d;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
   position: relative;
   width: 100%;
-}
-
-.c-flip-card:hover ._w-flip-card {
-  transform: rotateY(180deg);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
 .c-card-front,
 .c-card-back {
+  width: 100%;
+  height: 277px !important;
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.c-card-front {
+  display: flex;
+  transform: rotateY(0deg);
 }
 
 .c-card-back {
-  transform: rotateY(180deg);
-  display: flex !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
+  display: none;
+  transform: rotateY(-90deg);
 }
 
-/* Ensure hero tags and text stay on a single line */
-.hero-tag-wrap,
-.hero-tag {
+/* Brand Logo Styling */
+.navbar-brand {
+  display: flex !important;
+  align-items: center !important;
+  text-decoration: none !important;
+}
+
+.navbar-brand .logo,
+.navbar-brand .white-logo {
+  height: 34px !important;
+  width: auto !important;
+  max-width: 200px !important;
+  object-fit: contain !important;
+}
+
+/* Hero badge ticker - seamless infinite marquee with perfectly even spacing (strictly scoped to hero) */
+.hero-tag-wrap {
+  position: relative !important;
+  overflow: hidden !important;
   white-space: nowrap !important;
 }
 
-.hero-tag-btn-wrap,
-.hero-tag-btn-wrap._04 {
+.hero-tag {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
   white-space: nowrap !important;
   align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  max-width: 466px !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+.hero-tag .hero-tag-btn-wrap {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
   width: auto !important;
   min-width: max-content !important;
-  max-width: none !important;
+  flex-shrink: 0 !important;
+  animation: heroTagTicker 25s linear infinite !important;
+  will-change: transform;
+}
+
+.hero-tag:hover .hero-tag-btn-wrap {
+  animation-play-state: paused !important;
+}
+
+@keyframes heroTagTicker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(-100% - 10px), 0, 0);
+  }
+}
+
+/* Explicitly stop any scrolling or animation on portfolio/teaser pills */
+.hero-tag-btn-wrap._03,
+.teaser-section .hero-tag-btn-wrap,
+.teaser-wrap .hero-tag-btn-wrap {
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  flex-shrink: 1 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
 }
 
 .hero-tag-btn,
@@ -246,6 +321,12 @@ export default function RootLayout({
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  margin: 0 !important;
+  padding: 10px 16px !important;
+  border: 1px solid var(--border-color-two) !important;
+  background-color: var(--hero-tag-btn-bg) !important;
+  border-radius: 50px !important;
+  text-decoration: none !important;
 }
 
 .hero-tag-btn-text,
@@ -261,7 +342,12 @@ export default function RootLayout({
   display: inline-block !important;
 }
 
-            `,
+.hero-tag-shap-left,
+.hero-tag-shap-right {
+  pointer-events: none !important;
+}
+
+`,
           }}
         />
         <script
@@ -280,6 +366,7 @@ export default function RootLayout({
                 if (typeof MutationObserver !== 'undefined') {
                   new MutationObserver(purge).observe(document.documentElement, { childList: true, subtree: true });
                 }
+
               })();
             `,
           }}

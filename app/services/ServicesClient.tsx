@@ -65,14 +65,14 @@ export default function ServicesClient({ services }: ServicesClientProps) {
             <Link href="/" className="navbar-brand w-nav-brand">
               <img
                 loading="lazy"
-                src="https://cdn.prod.website-files.com/6878854b4782d46450f79836/688085a36497cfeb5ed9ad15_1701e725575a72211e948080a2058381_logo-stryker-small.svg"
-                alt="Sevens Logo"
+                src="/assets/img/sevens-logo-dark.png"
+                alt="Sevens"
                 className="logo"
               />
               <img
                 loading="lazy"
-                src="https://cdn.prod.website-files.com/6878854b4782d46450f79836/68b821657d18f5ae079488f0_white-logo.svg"
-                alt="Sevens White Logo"
+                src="/assets/img/sevens-logo-white.png"
+                alt="Sevens"
                 className="white-logo"
               />
             </Link>

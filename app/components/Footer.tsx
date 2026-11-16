@@ -22,9 +22,8 @@ export default function Footer() {
         <div className="closing__links">
           <div className="grid" style={{ gap: "32px 20px" }}>
             <div className="span-4 stack-4">
-              <Link className="nav__logo" href="/">
-                <span className="mark" aria-hidden="true"></span>
-                Sevens Studio
+              <Link className="nav__logo" href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+                <img src="/assets/img/sevens-logo-white.png" alt="Sevens" style={{ height: "32px", width: "auto" }} />
               </Link>
               <p className="footer__lede" style={{ color: "var(--p-muted)", fontSize: "14px", lineHeight: "1.6", marginTop: "12px" }}>
                 Senior engineering studio building bespoke web applications, mobile apps, and high-performance websites for software teams and venture-backed founders.

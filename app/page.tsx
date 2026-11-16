@@ -1,5 +1,5 @@
 import React from "react";
-import NexoStudio from "./components/NexoStudio";
+import Sevens from "./components/Sevens";
 
 export const metadata = {
   title: "Sevens — Website, Web App, Mobile App & E-commerce Development",
@@ -48,5 +48,5 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <NexoStudio />;
+  return <Sevens />;
 }

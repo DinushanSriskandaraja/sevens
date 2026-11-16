@@ -13,9 +13,8 @@ export default function Navbar() {
       <div className="wrap nav__bar">
         <a className="skip-link" href="#top">Skip to content</a>
         
-        <Link className="nav__logo" href="/">
-          <span className="mark" aria-hidden="true"></span>
-          Sevens Studio
+        <Link className="nav__logo" href="/" style={{ display: "inline-flex", alignItems: "center", textDecoration: "none" }}>
+          <img src="/assets/img/sevens-logo-dark.png" alt="Sevens" style={{ height: "32px", width: "auto" }} />
         </Link>
 
         {/* Desktop Navigation */}
