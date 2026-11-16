@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import type { BlogPost } from "@/data/blogPosts";
+import type { BlogPost } from "@/lib/blogs";
 
 interface BlogPostClientProps {
   post: BlogPost;
@@ -35,11 +35,11 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="bolg-details-wrap">
             <div data-w-id="f040d954-2fcd-a81a-1a3e-6442366d0224" className="blog-details-img-wrap">
               <img
-                src={post.image}
+                src={post.coverImage}
                 loading="lazy"
                 alt={post.title}
                 sizes="(max-width: 767px) 100vw, (max-width: 991px) 726.625px, 939.15625px"
-                srcSet={post.imageSrcset}
+                srcSet={post.coverImageSrcset}
                 className="blog-details-img"
               />
               <div style={{ height: "100%" }} className="blog-details-overlay" />

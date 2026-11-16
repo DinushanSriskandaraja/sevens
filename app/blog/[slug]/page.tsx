@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { BLOG_POSTS, getBlogPost } from "@/data/blogPosts";
+import { getBlogPost, getAllBlogSlugs } from "@/lib/blogs";
 import BlogPostClient from "./BlogPostClient";
 
 interface PageProps {
@@ -8,8 +8,9 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return BLOG_POSTS.map((post) => ({
-    slug: post.slug,
+  const slugs = getAllBlogSlugs();
+  return slugs.map((slug) => ({
+    slug,
   }));
 }
 
@@ -25,13 +26,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: post.title,
       description: post.excerpt,
       type: "article",
-      images: post.image ? [{ url: post.image }] : [],
+      images: post.coverImage ? [{ url: post.coverImage }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: post.image ? [post.image] : [],
+      images: post.coverImage ? [post.coverImage] : [],
     },
   };
 }

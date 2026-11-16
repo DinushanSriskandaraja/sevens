@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getAllBlogPosts, getFeaturedBlogPosts } from "@/lib/blogs";
 import BlogClient from "./BlogClient";
 
 export const metadata: Metadata = {
@@ -21,5 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <BlogClient />;
+  const posts = getAllBlogPosts();
+  const featuredPosts = getFeaturedBlogPosts();
+
+  return <BlogClient posts={posts} featuredPosts={featuredPosts} />;
 }
